@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Funnel Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        /* Funnel structure */
+        .funnel {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(to top, #0056b3 0%, #6699ff 100%);
+            clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
+            position: relative;
+            margin: 20px auto;
+        }
+        .funnel::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 30px;
+            background: #ddd;
+            border-radius: 15px;
+        }
+
+        /* Candidate circles */
+        .candidate {
+            width: 20px;
+            height: 20px;
+            background-color: #f39c12;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fall 3s infinite;
+        }
+
+        .candidate:nth-child(2) { animation-delay: 1s; }
+        .candidate:nth-child(3) { animation-delay: 2s; }
+        .candidate:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
+            30% {
+                top: 50px;
+            }
+            50% {
+                top: 150px;
+                opacity: 1;
+            }
+            100% {
+                top: 350px;
+                opacity: 0;
+            }
+        }
+
+        /* Rigorous training phase */
+        .training {
+            width: 100px;
+            height: 100px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            position: absolute;
+            top: 350px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: shake 5s infinite ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translate(-50%, 0); }
+            25% { transform: translate(-50%, -5px); }
+            75% { transform: translate(-50%, 5px); }
+        }
+
+        /* Star performer */
+        .star {
+            width: 30px;
+            height: 30px;
+            background-color: #f1c40f;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            position: absolute;
+            top: 500px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: appear 6s infinite;
+        }
+
+        @keyframes appear {
+            0% { opacity: 0; }
+            60% { opacity: 0; }
+            80% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+        /* Product-based company */
+        .company {
+            position: absolute;
+            top: 600px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: #2c3e50;
+            opacity: 0;
+            animation: hire 8s infinite;
+        }
+
+        @keyframes hire {
+            0% { opacity: 0; }
+            90% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Funnel Process: From Candidate to Star Performer</h1>
+
+        <div class="funnel"></div>
+
+        <!-- Candidates falling into funnel -->
+        <div class="candidate"></div>
+        <div class="candidate"></div>
+        <div class="candidate"></div>
+        <div class="candidate"></div>
+
+        <!-- Rigorous training phase -->
+        <div class="training"></div>
+
+        <!-- Star performer -->
+        <div class="star"></div>
+
+        <!-- Company hires the star performer -->
+        <div class="company">Hired by Product-based Company!</div>
+    </div>
+</body>
+</html>
